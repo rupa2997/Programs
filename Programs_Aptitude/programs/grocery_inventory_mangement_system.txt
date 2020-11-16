@@ -1,0 +1,364 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class Node
+{
+	public:
+	string fruit;
+	int quantity;
+	//int numb;
+	Node *next;
+	
+	/*Node()
+    {
+        next=NULL;
+    }*/
+
+   Node(string fruit,int quantity)
+    {
+        this->fruit=fruit;
+        this->quantity=quantity;
+        //this->numb=numb;
+        this->next=NULL;
+    }
+  
+
+    ~Node()
+    {
+        next=NULL;
+    }
+            
+    int getquant()
+    {
+        return quantity;
+    }
+    string getfruit()
+    {
+        return fruit;
+    }
+
+    void setNext(Node *next)
+    {
+        this->next=next;
+    }
+    void setquant(int quantity)
+    {
+        this->quantity=quantity;
+    }
+
+    Node *getNext()
+    {
+        return next;
+    }
+};
+
+ class linklist
+{
+    
+    Node *head;
+    	
+    public:
+   	linklist()
+	{
+		head=NULL;
+	}
+	
+
+	void add(string fruit,int quantity)
+    {
+        Node *node=new Node(fruit,quantity);
+        Node* temp=head;
+        Node* prev=head;
+        
+        if(head==NULL)
+        {
+            head=node;
+        }
+        else if(quantity<head->getquant())
+        {
+            node->setNext(head);
+            head=node;
+        }
+        else
+        {
+            Node* temp;
+            temp=head;
+            Node* prev;
+            while(temp->getquant()<=quantity)
+            {
+                if(temp->getNext()==NULL)
+                {
+                    prev=temp;
+                    break;
+                }
+                prev=temp;
+                temp=temp->getNext();
+            }
+            node->setNext(prev->getNext());
+            prev->setNext(node);
+        }
+    }
+    void del(string fruit)
+    {
+        Node* temp;
+        Node* prev;
+        temp=head;
+        prev=head;
+        while(temp->getfruit()!=fruit)
+        {
+            prev=temp;
+            temp=temp->getNext();
+        }
+        if(prev==NULL)
+        {
+            head=head->getNext();
+        }
+        else
+        {
+    
+            prev->setNext(temp->getNext());
+        }
+        //showChoice();
+        
+    }
+    void print()
+    {
+        Node* temp=head;
+        cout<<"Grocery Item"<<" "<<"Stock"<<endl;
+        while(temp->getNext()!=NULL)
+        {
+            cout<<temp->getfruit()<<" "<<temp->getquant()<<endl;
+            temp=temp->getNext();
+        }
+        cout<<temp->getfruit()<<" "<<temp->getquant()<<endl;
+        
+    }
+       void showMin()
+       {
+         Node* temp=head;
+         Node* prev;
+         if(head==NULL)
+         {
+          cout<<"";
+         }
+         else
+         {
+           int mins=head->getquant();
+          while(temp!=NULL)
+         {
+           if(mins>temp->getquant())
+         {
+          prev=temp;
+          mins=temp->getquant();
+         }
+            temp=temp->getNext();
+         }
+            cout<<"Minimum stock : "<<prev->getfruit()<<" : "<<prev->getquant()<<endl;
+          }
+        }
+           void showMax()
+           {
+              Node* temp=head;
+             Node* prev;
+                   if(head==NULL)
+                   {
+                        cout<<" ";
+                   }
+                   else
+                   {
+                        int maxs=head->getquant();
+                       while(temp!=NULL)
+                    {
+                    if(maxs<temp->getquant())
+                    {
+                           prev=temp;
+                           maxs=temp->getquant();
+                    }
+                        temp=temp->getNext();
+                    }
+                cout<<"Maximum stock : "<<prev->getfruit()<<" : "<<prev->getquant()<<endl;
+                   }
+           }
+     void addSt(string fruit,int quantity)
+     {
+          int st;
+          Node* temp=head;
+
+            while(temp->getfruit()!=fruit)
+            {
+               if(temp==NULL)
+            {
+                   cout<<"Grocery not found"<<endl;
+                    break;
+             } 
+                 temp=temp->getNext();
+             }
+             if(head->getfruit()==fruit)
+             {
+             // head=head->getNext();
+                    st=head->getquant();
+                    head->setquant(st+quantity);
+             }
+            else
+             {
+                 st=temp->getquant(); 
+                 temp->setquant(st+quantity);
+     }        }
+                       void soldG(string fruit,int quantity)
+                        {
+                             int st;
+                            if(head==NULL)
+                            {
+                               cout<<"inventory is empty"<<endl;
+                             }
+                           else if(head->getfruit()==fruit)
+                           {
+                            cout<<"head"<<endl;
+                              st=head->getquant();
+                             if(st>=quantity)
+                             {
+                              head->setquant(st-quantity);
+                              }
+                             else
+                               {
+                               cout<<"insufficient stock"<<endl;
+                                }
+                               }
+                            else
+                              {
+                                   Node* temp=head;
+                                 while(temp->getfruit()!=fruit)
+                                {
+                                 if(temp==NULL)
+                                {
+                                    cout<<"null"<<endl;
+                                     break;
+                                  }
+                                    temp=temp->getNext();
+                                   }
+                                  st=temp->getquant();
+                                   if(st>=quantity)
+                                   {
+                                       temp->setquant(st-quantity);
+                                   }
+                                    else
+                                   {
+
+                                         cout<<"insufficient stock"<<endl;
+                                     }
+                                     }
+                                    cout<<endl;
+                                    }     
+    void showChoice()
+	{	
+	   cout<<"Select one option to perform"<<endl;
+	  cout<<"1. Add new grocery to inventory"<<endl;
+	  cout<<"2. Remove Grocery from inventory"<<endl;
+	  cout<<"3. Grocery with Minimum Stock"<<endl;
+	  cout<<"4. Grocery with Maximum Stock"<<endl;
+	  cout<<"5. Grocery List with Stock in acending order"<<endl;
+      cout<<"6. Sold Grocery"<<endl;
+      cout<<"7. Add Stock"<<endl;
+      cout<<"8.Exit"<<endl;
+	 
+	      int ch;
+	        cout<<"Enter your choice ";
+	        cin>>ch;
+	       switch(ch)
+	       {
+	            case 1:
+	                    {
+	                    cout<<"Enter New Grocery Item to add:";
+	                    string fru;
+	                    cin>>fru;
+	                    cout<<"Enter"<<" "<<fru<<" "<<"Initial Stock:";
+	                    int  quant;
+                        cin>>quant;
+                        add(fru,quant);
+                        //showChoice();
+	                    }
+                        break;
+             
+               case 2:
+                       {
+                        cout<<"Enter Grocery name to remove:";
+                        string frui;
+                        cin>>frui;
+                        del(frui);
+                        //showChoice();
+                       }
+                        break;
+                case 3:
+                       {
+                        showMin();
+                       }
+                        break;
+                case 4:
+                       {
+                        showMax();
+                       }
+                        break;
+                case 5: 
+                        {
+                         print();
+                         //showChoice();
+                        } 
+                        break;
+                case 6:
+                       {
+                        cout<<"Enter sold grocery item name: ";
+                        string fru;
+                        int Quant;
+                         cin>>fru;
+                         cout<<"Enter "<<fru<<" Sold Quantity: ";
+                         cin>>Quant;
+                         soldG(fru,Quant);
+                       }
+                         break;
+                case 7: 
+                        {
+                            cout<<"Enter grocery item name to add stock: ";
+                            string fru;
+                            cin>>fru;
+                            cout<<"Enter"<<" "<<fru<<" " <<"Quantity to add to stock: ";
+                            int no;
+                            cin>>no;
+                            addSt(fru,no);
+                           
+                        }
+                       break;
+                case 8:
+                        break;
+	           
+	        }  
+	   showChoice();
+	}
+     
+   
+};
+
+
+int main()
+{
+    linklist l1;
+    cout<<"Enter Number of grocery items in inventory system: ";
+    int n;
+    cin>>n;
+    
+    cout<<"Enter names ANd quantity of"<<" "<<n<<" "<<" grocery items"<<endl;
+    int i=1;
+    while(i<=n)
+    {
+        string fruit;
+        int quantity;
+        cout<<"Enter the initial stock of ";
+        cin>>fruit>>quantity;
+        i++;
+        l1.add(fruit,quantity);
+    }
+    //l1.print();
+    l1.showChoice();
+          
+return 0;
+}

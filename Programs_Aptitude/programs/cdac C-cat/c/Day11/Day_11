@@ -1,0 +1,61 @@
+TWO DIMENSIONAL ARRAY:-
+
+1.They are arranged in rectangular grid of row and column .The elements of 2 dimensional array can be accessed using row subscript and column
+  subscript.It is popularly known as matrix.
+
+2.The general form of declaring 2d array is 
+
+	<data type> <arr_name>[row_size][col_size];--> Here Column specifier is compulsory
+	
+	int arrary1[2][3]-->array1 integer of 2 rows and 3 columns
+	float arrary2[5][1]-->array2 is a float array of 5 rows and 1 columns
+	char[3][3]-->array3 is a character array of 3 rows and 3 columns. 
+
+3.The array locations are initialized row wise, if init list is less than number of elements in the array then remaining element are init to  	zero
+	eg:- int array1[4][7]={2,1,2,3,4,5,6,1,6,8}
+	
+	     2 1 2 3 4 5 6 			
+	     1 6 8 0 0 0 0	
+	     0 0 0 0 0 0 0
+	     0 0 0 0 0 0 0	  	
+
+4.2D array which are actually stored in memory which is linear hence multidimensional is to be stored one dimensional,they are 2 ways 
+	
+	+Row major order->Here elements are stored row wise.In C language mult dimensional array are stored in memory using row major order 				  of storage  
+	+Column major order->Here the elements are stored column wise.Fortran and matlab are the examples.
+	
+
+
++Command line arguments 
+
+1. Array of character pointers --> char *languages[]={"BASIC","JAVA","FORTRAN","C","C++"}
+
+2.We have seen that inputs are given to functions by means of argument , main is also the function so we provide the arguments to main 
+  functions which can be done with the help of command line argument.
+
+	main(int argc,char* argv[],char* envp[])
+	{
+
+	}
+
+	argc-->argc is  count 
+	argv-->argv is argument vector and is array of character pointers 
+	envp-->environment variable pointer (Dynamic object containing editable value which can be used for software programs)
+
+
+	suppose we have provided i/p as 
+	prog opt1 opt2 sfile dfile
+
+	+Command line arguments are separated by blank spaces
+	+Name of the program will be the first argument so argc will count the number of arguments which will give you 5.
+	
+	+The contents are 
+	
+	argv[0]-->prog
+	argv[1]-->opt1
+	argv[2]-->opt2
+	argv[3]-->sfile
+	argv[4]-->dfile
+
+ 
+

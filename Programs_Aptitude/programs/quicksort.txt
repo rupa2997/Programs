@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+void printArray(int a[], int size) 
+{ 
+    int i; 
+    for (i=0; i < size; i++) 
+        cout<<a[i]<<" "; 
+      cout<<endl;
+} 
+  
+ int partition(int a[],int lb,int ub)
+{
+    int pivot=a[lb];
+    int start=lb;
+    int end=ub;
+    while(start<end)
+    {
+        while(a[start]<=pivot)
+        {
+            start++;
+        }
+        while(a[end]>pivot)
+        {
+            end--;
+        }
+        if(start<end)
+        {
+            swap(a[start],a[end]);
+        }
+    }
+    swap(a[lb],a[end]);
+        return end;
+}
+void quicksort(int a[],int lb,int ub)
+{
+    if(lb<ub)
+    {  
+    
+        int loc=partition(a,lb,ub);
+        quicksort(a,lb,loc-1);
+        quicksort(a,loc+1,ub);
+    }
+}
+   void swap(int* a,int* b)
+   {
+    int temp;
+    temp=*a;
+    *a=*b;
+    *a=temp;
+   }
+   int main() 
+   { 
+    int a[] = {10, 7, 8, 9, 1, 5};
+     int n = 6;
+    cout<<"Given array :";
+    for(int j=0;j<n;j++)
+    {
+        cout<<a[j]<<" ";
+    }
+    cout<<endl;
+    
+    quicksort(a,0,n-1); 
+    cout<<"Sorted array: "; 
+    printArray(a, n); 
+    return 0; 
+   } 

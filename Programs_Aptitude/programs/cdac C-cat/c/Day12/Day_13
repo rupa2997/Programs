@@ -1,0 +1,46 @@
+STRUCTURES
+
++Strucutres is collection of variables under a single name and provide the convinient way of grouping several pieces of related information
+together.
++Unlike the array it can be used to store the hetrogeneous data
+
+	Defining Structure:-
+		struct [Structure name]
+		{
+			type member_name1
+			type member_name2 
+		}variable_name
+
+		struct book
+		{
+			char title[25];
+			char author[20];
+			int pages;
+			float price;		
+		}
+
++Structure defination does not reserve any memory space for strucuture members.
+
++Structure defination does not contain a structure tag-name created structure is unnamed, unnamed structure is also called anonymous structure 
+		struct
+		{
+			char title[20];
+			char author[20];
+			int pages;	
+			float price;
+		
+		}book1;
+
+UNIONS
+
++UNION are used to create user-defined types ,it is collection of one or more variables possibly of different types 
++In structure separate memory is allocated to the structure while in union all the members of object share the same memory
+
+		 	Defining Union:-
+
+			union [union name]
+			{
+				type member_name1
+				type member_name2 
+			}variable_name	
+	

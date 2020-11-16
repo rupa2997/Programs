@@ -1,0 +1,98 @@
+#include <iostream>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*left;
+  Node*right;
+  Node(int d){
+    data=d;
+    left=NULL;
+    right=NULL;
+  }
+};
+Node* buildtree(){
+  int d;
+  cin>>d;
+  Node*root;
+  if(d==-1){
+    return NULL;
+  }
+  root=new Node(d);
+  root->left=buildtree();
+  root->right=buildtree();
+  return root;
+}
+void print(Node*root){
+  if(root==NULL){
+    return;
+  }
+  cout<<root->data<<" ";
+  print(root->left);
+  print(root->right);
+}
+int main()
+{
+    Node*root=buildtree();  
+    print(root);
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+class Node{
+  public:
+  string data;
+  Node*left;
+  Node*right;
+  Node(string d){
+    data=d;
+    left=NULL;
+    right=NULL;
+  }
+};
+Node* buildtree(){
+  string d,c;
+  cin>>d;
+  Node*root;
+  cin>>c;
+  if(c==1){
+    insertone();
+  }
+  root=new Node(d);
+  root->left=buildtree();
+  root->right=buildtree();
+  return root;
+}
+void print(Node*root){
+  if(root==NULL){
+    return;
+  }
+  cout<<root->data<<" ";
+  print(root->left);
+  print(root->right);
+}
+int main()
+{
+     // Node*root=buildtree();  
+    //print(root);
+    string str1,str2,str3;
+    int num;
+    cout<<"Enter father"<<endl;
+    cin>>str1;
+    cout<<"no of child ";
+    cin>>num;
+    if(num==2)
+    {
+        cin>>str2>>" ">>str3;
+        insert2(str1,str2,str3);
+    }
+    if(num==1)
+    {
+        cin>>str2;
+        insert1(str1,str2);
+    }
+    return 0;
+}
+
+

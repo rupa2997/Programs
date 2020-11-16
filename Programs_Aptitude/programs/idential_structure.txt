@@ -1,0 +1,109 @@
+
+
+#include <iostream>
+//#include <cmath>
+
+using namespace std;
+
+class Tree 
+{
+	public:
+		int data;
+		Tree* left;
+		Tree* right;
+		Tree(int d) {
+			data = d;
+			left = NULL;
+			right = NULL;
+		}
+};
+int isIdentical(Tree* a, Tree* b) 
+     { 
+     
+        if (a==NULL && b==NULL) 
+            return 1; 
+           if (a!=NULL && b!=NULL) 
+           { 
+                 return
+            ( 
+              isIdentical(a->left, b->left) && 
+               isIdentical(a->right, b->right) 
+             ); 
+           } 
+    return 0; 
+     }  
+
+Tree* insert(Tree* root, int x) {
+	if (root == NULL) {
+		Tree* temp = new Tree(x);
+	return temp;
+}
+
+if (x < root->data) {
+	root->left = insert(root->left , x);
+		return root;
+	} else {
+		root->right = insert(root->right, x);
+		return root;
+	}
+}
+
+Tree* createT() {
+	Tree* root = NULL;
+	int x;
+	cin >> x;
+
+	
+	while (true) {
+		if (x == -1) 
+		break;
+		root = insert(root, x);
+		cin >> x;
+	}
+	return root;
+}
+  int Fdepth(Tree* root)  
+{  
+    if (root == NULL)  
+        return 0;  
+    else
+    {  
+        int lDepth = Fdepth(root->left);  
+        int rDepth = Fdepth(root->right);  
+        if (lDepth > rDepth)  
+            return(lDepth + 1);  
+        else return(rDepth + 1);  
+    }  
+}  
+
+int main()
+ {
+	
+	int i;
+	int num;
+	cin>>num;
+	Tree* root = createT();
+	for(i=0;i<num-1;i++)
+	{
+	    Tree* root1=createT();
+	   int no= (Fdepth(root)-Fdepth(root1));
+	   if(no==-1 || no==1)
+	        no=1;
+	   
+	      if (isIdentical(root, root1)) 
+	         {
+              cout<<"YES"<<no; 
+              cout<<endl;
+	         }
+          else
+             {
+                cout<<"NO"<<no;
+               cout<<endl;
+             }
+	
+	}
+	return 0;
+}
+
+
+

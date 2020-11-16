@@ -1,0 +1,87 @@
+
+
+Types of  Function
+
+a. Inbuilt function - year(), month(), now(), sum(), count(), max()
+b. Use Defined Function - 
+=================================================
+
+
+SET GLOBAL log_bin_trust_function_creators = 1;
+
+Delimiter /
+CREATE OR REPLACE FUNCTION membercount()
+RETURNS INT
+
+BEGIN
+
+RETURN(select count(*) from member where status = 'Active') ;
+
+END /
+
+Delimiter ;
+-----------------------------------------------------------------------------
+
+Delimiter /
+CREATE FUNCTION Allmembercount(sts varchar(20))
+RETURNS INT
+
+BEGIN
+
+RETURN(select count(*) from member where status = sts) ;
+
+END /
+
+Delimiter ;
+--------------------------------------------------------------------------------------------
+
+Delimiter !
+CREATE FUNCTION getBkName(bkid varchar(30))
+RETURNS varchar(30)
+BEGIN
+
+DECLARE bname varchar(30);
+select bookname INTO bname from book WHERE bookid = bkid;
+Return(bname);
+
+END !
+Delimiter ;
+
+
+--------------------------------------------------------------------------------------------
+
+2019 <-- Latest memebr
+2018 <- Recent member
+<2018 <-- Old member
+
+Delimiter //
+create function getmembersts(yr int(15))
+Returns varchar(25)
+Begin
+DECLARE msg varchar(25);
+	IF yr = 2019 THEN SET msg =' Latest Member';
+		ELSEIF yr = 2018 THEN SET msg = 'Recent Member';
+		ELSEIF yr < 2018 THEN SET msg = 'Old Member';
+	END IF;
+Return(msg);
+End //
+Delimiter ;
+
+
+select year(doj) , getmembersts(year(doj)) from member;
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+

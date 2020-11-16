@@ -1,0 +1,79 @@
+storage classes in c:
+- it decides following things about variable/function:
+	1. scope -- local, global or file
+	2. bydefault initial value of var -- garbage value or zero
+	3. lifetime -- by what time memory remain allocated for that var
+	4. location -- CPU registers or main memory
+
+ automatic storage class:
+	- bydefault all local variables (vars which are defined inside any function)
+	belongs to automatic storage class.
+	- we can use "auto" keyword for defining variable belongs automatic storage class
+	explicitly.
+	- scope -- local i.e. automatic storage class vars can be accessed only inside
+	the function/block in which they have defined.
+	- by default initial value -- garbage value
+	- lifetime -- throughout function or block in which they have defined i.e. memory
+	of auto vars remains alive till the function or block is in execution, so when
+	an execution of a function or block is completed memory of auto vars gets released.
+	- location -- main memory
+
+2. register storage class:
+	- we can use "register" keyword for defining variable belongs register storage
+	class.
+	- scope -- local i.e. register storage class vars can be accessed only inside
+	the function/block in which they have defined.
+	- by default initial value -- garbage value
+	- lifetime -- throughout function or block in which they have defined.
+	- location -- cpu registers
+	- we cannot take addr of register storage class var
+	- execution is faster
+	- As no. of registers  is very less our request may be rejected and it will be automatically converted in auto            		- If request is entertained then programmer can enjoy speed/performance of application
+
+
+
+	
+3. extern/global storage class:
+	- bydefault all global variables (vars which are defined outside function in global
+	declaration section) belongs to extern storage class.
+	- we can use "extern" keyword for defining variable belongs extern storage class
+	explicitly.
+	- scope -- global i.e. vars can be accessed from anywhere inside the file and
+	can be accessible from inside another file ( provided files are exists in same
+	dir/folder/project).
+	
+	- by default initial value -- zero
+	- lifetime -- throughout an execution of a program
+	- location -- main memory
+
+4. static storage class:
+	- we can use "static" keyword for defining variable belongs static storage class
+	explicitly.
+	- scope -- local 
+	- by default initial value -- zero
+	- lifetime -- throughout an execution of a program
+	- location -- main memory
+	- static vars can be initialized only once and can be modified multiple times.
+
+
+
+- recursion -- it is a process in which we can call any function from that function
+itself.
+
+It is necessary to mention terminating condition else causes runtime error - stack overflow
+
+Recursion helps to call block of statement repeatedly
+
+In case of recursion function is called within it's own definition
+
+recursion						loop
+uses more memory 				less memory utilisation
+
+follows LIFO					FIFO
+
+more time consumption				less time consumption
+
+if no terminating condition is			if no terminating condition is 	 
+mentioned causes to runtime error		mentioned causes to infinite loop
+stack overflow state
+

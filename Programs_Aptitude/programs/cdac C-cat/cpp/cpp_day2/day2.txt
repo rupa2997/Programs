@@ -1,0 +1,242 @@
+
+
+Data member - also called field,property,attribute
+Member function - methods , operations, behaviour, message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Diffrance between class and struct in cpp is - all the members of class is by default private and all the members of struct in cpp is by default public.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class - User define data type.
+Object -variable of class is called object
+	object gets physical memory.
+
+
+"class" as a blueprint of object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+characteristics of object
+1.State - determined by the value of data member
+2.Behavior- member function decides behavior of object.
+Calling the same member function on two objects having diff state will show diff behavior.
+3.Identity- every object has a characteristic that makes the object unique. In cpp every object has  unique address.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Types of member function
+Constructor
+Destructor
+Mutators/setter
+inspector/getter
+facilitator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Empty Class
+
+	A class which do not have any Data member or member function is
+called as the Empty class.
+
+- We can create an object of a empty class.
+- Size of an object of a empty class is 1 byte.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Namespace
+-used to avoid name ambiguity in case of globle variable,function,classes
+-Logical grouping of variable , function, enum, structure, class, namespaces.
+-to achive logical modularity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//printf
+cout - object of ostream class declared in iostream inside std namespace
+	It uses << operator called as insertion operator
+
+
+
+
+
+
+//scanf
+cin - object of istream class declared in iostream inside std namespace
+	It uses >> operator called as extraction operator
+
+
+
+
+
+
+
+
+
+
+
+
+
+Complex class
+	data member 		real , imaginary
+	member functions	complex(),complex(int r,int i),accept(),print()
+				~complex()
+
+
+
+
+
+
+
+
+
+
+
+revise malloc() and dynamically memory allocation - for next lecture 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

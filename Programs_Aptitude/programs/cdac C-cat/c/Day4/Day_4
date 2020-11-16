@@ -1,0 +1,76 @@
+Loop / Itereation  : is a programming construct which helps to call block of statements repeatedly.
+
+Category:
+	1. on entry check loop	----- while , for
+	2. on exit check loop	----- do while
+
+Conventionally it is said that if no. of iterations are fixed in advance then use counter loop i.e. for loop
+
+Conventionally it is said that if no. of iterations are not known in advance then use while or do while loop.
+
+while(<expression>) //on entry chek
+{
+   <statements>
+}
+
+While developing loop think about 3 things
+	1. initial state - before we start loop
+	2. expression check- if it is true respective iteration is invoked
+	3. modification statement - is a statement which helps to result expression check to false state.
+
+
+jump statements:
+break	- can be used inside switch or loop which helps to move execution control forcefully outof loop/switch
+return - can be used   inside function helps to move execution control forcefully back to calling function
+
+continue: can be used only inside loop. Helps to move execution control forcefully to next iteration. Whenever continue is encountered all c statements below continue are skipped from evaluation in current iteration from.
+
+goto: can be used to mark statements as label and jump to specific label definition
+
+with goto we can jump to label definition which is in scope of current function.
+
+
+<LABEL>:
+	<statements>
+
+goto <LABEL>;
+
+if label definition comes in sequence of execution control even though it is not invoked execution control is given to label definition.
+
+do
+{
+    <statements>
+}while(<expression>); //on exit check loop
+
+//no matter what is initial state 1 execution of do..while is fixed
+
+i=5;						i=5;
+while(i>=10)					do	
+{						{
+   printf("\n Inside");					printf("\n Inside");
+}						}while(i>=10);	
+
+
+for loop:
+
+for(<initialisation>  ; <expression> ; <modification statement> ) //on entry
+{
+	<statements>
+}
+
+
+for(step1 ; step2  ;step4 )
+{
+    step3
+}
+
+
+
+
+
+
+
+
+
+
+

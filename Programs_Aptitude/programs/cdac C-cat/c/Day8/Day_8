@@ -1,0 +1,45 @@
+Arrays
+
+1.Single Dimensional Array
+2.Multi  Dimensional Array
+
+1].Single Dimensional Array 
+
+1. It is collection of logically related similar type of elements gets stored into the memory at contiguos locations.
+2. It consist of fixed number of elements of the same datatype and can be accessed using  subscript operator.They are also called as 	     	linear arrays.
+3.Size specifier is mendatory
+4.Size must be constant ,Size of array cannot be squeezed or changed at the run-time.
+5.Memory allocated to the array is at compile time.It cannot be changed at the runtime.
+
+
+	<data type> <arr_name>[ size ];
+
+	eg : - int arr[5]
+
+	- data type may be any primitive or non-primitive type
+	- arr_name -- is an indentifier -- var name
+	- [ ] -- an index operator
+	- size -- is an integer constant 
+
+6.The elements of the array can be initialized using Intialization list and it should be less than or atmost equal to value of size specifier.
+   If number of initializers in initialization list is less than rest of array locations get initialized zero. 
+	eg .-> int arr[3]={1,2,3} // OK
+	       int arr[5]={1,2}; // OK
+	       int arr[2]={1,2,3,4};//Not OK.
+7.Array subscripts in C starts with 0 and is and is valid upto n-1
+
+8.The ony operation allowed on array is subscripting. We cannot equate one array to another array and we cannot assign one array to another array.
+	
+
+
+scale factor(int *): 4 bytes
+scale factor(char *): 1 byte
+scale factor(float *): 4 bytes
+scale factor(double *): 4 bytes
+scale factor(void *): undefined
+
+	
+
+
+
+

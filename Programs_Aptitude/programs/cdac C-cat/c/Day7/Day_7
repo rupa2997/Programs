@@ -1,0 +1,48 @@
++ "pointer" -- it is a variable in which we can store addr of another variable
+ - it is a derived data type
+ - general syntax:
+ 	<data type> *<var_name>;
+ 	- data type may be any primitive or non-primitive type
+ 	- * --> asterisk operator or value at operator or single indirection operator
+ 	- var_name --> an indentifier
+ 	
+	- if we want to store addr of pointer var, we can store it into the double pointer
+	var, which is also called as - "pointer to pointer".
+		<data type> **<ptr_name>;
+	- data type may be any primitive or non-primitive type
+ 	- ** --> value at value at operator or double indirection operator
+ 	- ptr_name --> an indentifier
+		
+		
+sizeof(int *): 4 bytes
+sizeof(char *): 4 bytes
+sizeof(float *): 4 bytes
+sizeof(double *): 4 bytes
+sizeof(void *): 4 bytes
+
+	- sizeof(<data type> *) = 4 bytes on 32-bit compiler,
+
+operations on pointer 
+
+1.Referencing operation
+
+Pointer variable is made to refer to an object with the help of reference operator &
+
+	int *ptr;
+	int a =10;
+	ptr = &a;
+
+2.Dereferencing operation
+The object pointed bt pointer can be indirectly acessed by dereferencing a pointer by using (*) operator 
+
+
+	int *ptr;
+	int a =10;
+	ptr = &a;
+	printf("%d",*ptr);
+
+*Pointer cannot be initialized or assigned the address of another type;
+
+
+
+

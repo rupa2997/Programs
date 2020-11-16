@@ -1,0 +1,355 @@
+
+
+
+static - class level not object level
+
+static data member-
+If we want to share value of any data member in all object then we should declare that data member as a static.
+-All the object share single copy of that static member.
+-Size of object=size of all the non-static data members declared inside the class.
+-Also called class level variables 
+
+static member function -
+- To access static data member outside the class we should declared static function inside class.
+- call by using class name
+- this pointer is not available.
+
+
+
+
+
+
+
+
+
+const:
+
+const data member : can not change value once it is assigned , 
+const member function : can not modify data member of class.
+		"mutable" data member can be midified in const function
+const object : can not modify the state of object.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Friend:
+A non member function of a class which designed to access private data of a class is called friend function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+C++ is not a pure Object Oriented Language Because
+
+-->You can write code without creating a class in C++, and main() is a globle function.
+
+-->Support primitive data types, e.g. int, char, etc. Instances(variable) of these primitive types are NOT objects.
+
+-->C++ provides "Friend" which is absolute corruption to 
+the OO-Principle.
+
+-->Private data can be access by using pointers.
+
+-->According OO-Principle, one object should have only one 
+hierarchical parent reference. In C++, Multiple-Inheritance 
+contradicts this principle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+operator overloading=Extending meaning of the operator so that they can be used on objects.
+
+we cannot overload following opertors
+ 	.
+	.*
+	?:
+	::
+	sizeof
+	typeid
+	//casting optr(4)
+we cannot overload following opertors as a non member function
+	=
+	[]
+	()
+	->
+
+copy construtor = to create new object from existing object.
+assignment operator = used to assign already created object to another already created object.
+
+
+
+
+
+
+
+
+
+
+
+
+Object Oriented programming structure(oops).
+
+-> It is a programing methodology to organise complex 
+program into simple program interms of class and 
+objects such methodology is called as 
+"Object Oriented programming structure"
+
+-> It is a programing methodology to organise complex 
+program into simple program by using the concept of 
+Abstraction, Encapsulation
+and Inheritance,modularity.
+
+->so the language which supports Abstraction, 
+Encapsulation and Inheritance is 
+called as Object Oriented programming language.
+
+->there are 4 mejor pillers of oops
+1. Abstraction 
+2. Encapsulation 
+3. Modularity
+4. Hierarchy
+
+->there are 3 minor pillers of oops
+1. Polymorphism (Typing)
+2. Concurancy
+3. Persistance
+
+
+
+
+
+
+
+
+
+Abstraction 
+-->Getting only essential thing and hidding 
+unnecessary details is called Abstraction .
+-->it always describe outer behaviour of object.
+-->Access specifiers are the main pillar of implementing abstraction in C++. 
+-->We can use access specifiers to enforce restrictions on class members.
+-->We can easily implement abstraction using the above two features provided by access specifiers. Say, the members that defines the internal implementation can be marked as private in a class. And the important information needed to be given to the outside world can be marked as public. And these public members can access the private members as they are inside the class.
+
+
+
+Encapsulation 
+->Binding of data and code is called Encapsulation 
+->implementation of Abstraction is called as Encapsulation  
+->Encapsulation  is always describes inner behaviour 
+of object;
+
+
+
+
+
+
+
+
+
+
+
+
+Information hidding:
+->hidding Information  from user is called 
+as Information hidding
+-> in c++ we use access specifires to provide
+ Information hidding
+
+
+
+
+
+
+
+
+
+
+
+
+
+modularity:
+->Dividing programing into small module is called
+as modularity
+->there are 2 types of modularity
+1> physical -> dividing class into multiple files
+e:g .h for declaration , .cpp for definations
+2> logical -> dividing class into namespaces 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Polymorphism (Typing)
+->One Function is having multiple forms is called
+polymorphism.
+->polymorphism is of two types
+
+Compile time  - which is also called as 
+		static polymorphism
+		static binding
+		Early binding
+		weak binding
+		false polymorphism.
+
+Runtime  - which is also called as 
+		dynamic polymorphism
+		dynamic binding
+		late binding
+		strong binding
+		true polymorphism.
+
+
+
+
+
+
+Compile time:-
+->when call to the function resolve at Compile time
+it is called as Compile time polymorphism 
+->it is achived by using Function overloading 
+
+
+
+Runtime :-
+->when call to the function resolve at runtime
+is called as runtime polymorphism
+->it is achived by using Function overriding.
+
+
+
+
+
+
+
+
+
+
+
+
+Hierarchy:
+
+
+order or level of Abstraction is called Hierarchy
+
+Types of Hierarchy
+	1> has a Hierarchy(Composition)
+	2> is a Hierarchy(Inheritance)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"has a"  Hierarchy:
+->When object is made from other small object
+then it is called as Composition.
+when object is composed of other object it is
+called as Composition
+
+e:g 
+room has a wall
+room has a chair
+system has a motherboard
+system has a UPS
+
+
+
+
+
+
+
+
+
+Types of Composition
+	1> Association
+	2> Aggregation
+	3> Containment
+
+1> Association 
+->Removal of small object do not affect big object
+is called as  "Association"
+e:g  room has a chair
+
+2> Aggregation
+Removal of small object affects the big object
+is called as  Aggregation
+e:g room has a wall
+
+3> Containment
+When a class contains a collection of objects 
+is called as Containment.
+e:g stack ,queue,linked list, array
+such a class is also called as collection
+room has number of chairs.
+
+
+
+//Composition example
+
+
+
+
+
+
+
+
+
+
+

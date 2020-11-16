@@ -1,0 +1,93 @@
+Functions:-
+
+1.To reduce the code redunduncy 
+2.Enabling the code reuse
+3.Better readabilty
+4.Information hiding
+5.Improved debugging and testing
+6.Improved maintainabilty
+
+Classification of the function:-
+
+1.User defined function:
+Defined and developed by user at the time of writing the program.These are called as programmer defined functions
+
+2.Library functions:
+These are the functions which are already developed by someone and are available to the user.printf and scanf and library functions
+
+
+1] FUNCTION DECLARATION
+
+All the functions need to be declared before they are used .The general form of function declaration is 
+		[return type] function name [paramater list]
+1.The term enclosed in square bracket are optional and might not be present in function declaration statement .Function names are identifier
+
+2.parameter list is comma separated list of parameter types
+
+eg. int fact(int n) --> accept an integer argument and return an intger value 
+    void print(char ch) ---> accept a char value nd do not return a value 
+    int fun()--> returns a int value and may take any number of arguments(specified in defination)
+
+function declaration are important because they allow for type checking ,by type checking compiler ensures that while making a function call user provides a correct number of argument and correct type of arguments and if they are not same compiler issues the error message 
+
+
+
+2] FUNCTION DEFINATION
+
+Function defination also known as function implementation consist of two things 
+	1.Header of function
+	2.Body of the function 
+
+1.Header of function:-
+	general form to header of function is 
+		[return type] function name ([parameter list])
+	a.No two paramters of parameter list should be same
+	b.It should not be terminated with the semicolon
+	c.It should be exactly match with function declaration , it is not mandatory to have the same name as of paramters in function declaration
+
+2.Body of function:-
+	Body of the function consist of set of execuatable statments enclosed within the braces 
+
+
+
+3]FUNCTION CALL
+	Function defination contains actual code for the function but we need to call the function so that it gets executed.
+	syntax for calling the function is 
+		variable-name=function-name(arg1,arg2,...);
+	The values passed to the function call within the paranthesis are cakked as parameters or actual arguments whereas arguments declared 
+	function declaration are called as formal arguments.Actual arguments are copied into formal arguments.
+
+	(note that function call is terminated with semicolon)
+	
+	eg: - int sum = printsum(a,b) // a and b are actual arguments 
+ 
+		int printsum(int x, int y)// x and y are formal arguments 
+		{
+			int sum; 
+			sum = x + y;
+			return sum;
+		}
+
+	NOTE that functions are always returned to the place where it is called. 
+
+
+*If function is executing it is said to be active. In C multiple functions can be active at the same time 
+ Activation of function requires separated activation record .Activation record refers to the chunk of the memory
+ which holds the following
+	a.Dynamic link :-  It points to activation record of the caller 
+	b.Saved state :- It refers to contents of program counter and register when function is called 
+	c.parameters : - They refer to memory space required by the parameters declared within the header of the function
+	d.local variables:- They refer to memory space required by automatic local variables 
+	e.Temporary storage :- It refers to storage used for evaluation in the expression.
+
+ An activation record is automatically created when function starts the execution and automatically destroyed when functions return 
+ to the caller. The activation record for all active functions are maintained in the region of the memory called  stack.		     		
+
+
+
+
+	
+
+
+
+

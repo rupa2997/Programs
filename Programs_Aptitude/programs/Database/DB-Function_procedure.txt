@@ -1,0 +1,258 @@
+ Delimiter /
+    create function M_Name()
+    returns int
+    begin
+     return(select count(*) from Movie where M_name='Baghi_3');
+     END /
+     Delimiter ;
+select M_Name();
+
+Delimiter /
+ create function M_name1()
+     returns varchar(100)
+     begin
+    return( select M_name from movie where M_id='M01' and M_id='M02' ) ;
+    END /
+  Delimiter ;
+Select M_name1();
+ Drop function M_name1;
+
+Delimiter /
+ create function M_name2()
+     returns varchar(100)
+     begin
+    return( select M_name from movie where M_id='M01'  ) ;
+    END /
+  Delimiter ;
+Select M_name2();
+
+Delimiter //
+create function  getM_Rating_sts(Rating int(100))
+returns varchar(100)
+begin
+declare msg varchar(100);
+  IF  Rating>=90 THEN SET msg='Higher';
+      ELSEIF rating=70 then set msg='Average';
+      ELSEIF rating<70 then set msg='Lower';
+  END IF;
+return(msg);
+END //
+Delimiter ;
+select M_name, getM_Rating_sts(rating)  from movie;
+
+Delimiter /
+Create function get_Custo_name( num varchar(100))
+ returns varchar(100)
+Begin
+declare Customer_name varchar(100); 
+select C_Fname Into Customer_name from customer  where C_id=num;
+return(Customer_name);
+END /
+Delimiter ;
+select get_Custo_name('C01');
+
+Delimiter !
+ Create function get_Cust_Lnm( num2 varchar(100))
+      returns varchar(100)
+     Begin
+    declare nm1 varchar(100);
+     select C_Lname INTO nm1 from customer  where C_id=num2;
+     return(nm1);
+     END !
+    Delimiter ;
+select get_Cust_Lnm('C02');
+
+----------------------------------------------------------------------------------------------------------------------
+                                                  PROCEDURE
+---------------------------------------------------------------------------------------------------------------------
+Delimiter %
+create procedure get_id()
+begin
+select  C_id from customer;
+END %
+Delimiter ;
+call get_id();
+---------------------------------------
+Delimiter &
+create procedure  Theatre_nm(IN Z_code int(50))
+begin
+select Theatre_name from Theatre  where Zip_code=Z_code;
+END &
+Delimiter ;
+call Theatre_nm('400709');
+--------------------------------------------------
+Delimiter &
+create procedure  Theatre1(IN Z_code int(50),OUT area_name varchar(100))
+begin
+select location from Theatre  where Zip_code=Z_code INTO area_name ;
+END &
+Delimiter ;
+call Theatre1('400709',@area_name);
+select @area_name;
+
+Delimiter /
+create procedure get_M_name(IN Mid varchar(10),OUT result varchar(100))
+begin
+declare M_nm varchar(100);
+select M_name INTO M_nm from Movie where M_id=Mid INTO result;
+ End /
+Delimiter ;
+
+Delimiter /
+create procedure get_M_name(IN Mid varchar(100),OUT result varchar(100))
+begin
+select M_name  from Movie where M_id=Mid INTO ;
+ End /
+Delimiter ;
+call get_M_name('M01',@result);
+select @result;
+
+Delimiter /
+create procedure get_M_name1(IN Mid varchar(100),OUT result varchar(100))
+begin
+select M_name  as MOVIE_NAME from Movie where M_id=Mid INTO result;
+ End /
+Delimiter ;
+
+TO SHOW ALL THE PROCEDURES METHOS NAMES
+SELECT ROUTINE_NAME,ROUTINE_TYPE FROM INFORMATION_SCHEMA.ROUTINES where 
+ROUTINE_TYPE = 'PROCEDURE' AND ROUTINE_SCHEMA = 'Movie_Ticket_Booking';
+
+SELECT ROUTINE_NAME,ROUTINE_TYPE FROM INFORMATION_SCHEMA.ROUTINES where 
+ROUTINE_TYPE = 'FUNCTION' AND ROUTINE_SCHEMA = 'Movie_Ticket_Booking';
+
+
+Delimiter //
+create function getratingstatus(M_rating int(40))
+returns varchar(25)
+Begin
+DECLARE msg varchar(25);
+      IF M_rating>=93 then SET msg='HIGHER';
+             ELSEIF M_rating=90 then SET msg='AVERAGE';
+             ELSEIF M_rating<90 then SET msg='LOWER';
+       END IF;
+return(msg);
+End//
+Delimiter ;
+select M_name , Release_d, getratingstatus(rating) from movie;
+
+Delimiter /
+create procedure get_M_r(IN mid varchar(10),OUT movie_ratingsts varchar(20))
+Begin
+declare M_rating int(40);	
+select Rating INTO M_rating  from movie where M_id = mid;
+
+select getratingstatus(M_rating) into movie_ratingsts ;
+End /
+Delimiter ;
+ call get_M_r('M01',@movie_ratingsts);
+select @movie_ratingsts;	
+
+Delimiter !
+create procedure get_Moviename(IN Mo_id varchar(60))
+begin
+select  *  from movie where M_id=Mo_id;
+END !
+Delimiter ;
+
+Delimiter !
+create procedure get_Movie_name(IN Mo_id varchar(60),IN M__id varchar(60))
+begin
+select  *  from movie where M_id=Mo_id or M_id=m__id;
+END !
+Delimiter ;
+call get_Movie_name('M01','M02');
+------------------------------------------------------------------------------------------------------------------
+                                                          TRIGGER
+--------------------------------------------------------------------------------------------------------------------
+To see all the triggers on a table
+----------------------------------
+select trigger_name,EVENT_OBJECT_TABLE from information_schema.triggers where 
+information_schema.triggers.trigger_schema like '%lms%';
+
+
+
+create database rupali1;
+
+use rupali1;
+
+create table v1(val int(10));
+
+
+
+
+Delimiter /
+
+create trigger checkval before insert ON V1 
+
+FOR EACH ROW
+    
+BEGIN
+      
+IF NEW.val < 0 then set NEW.val=0;
+        
+Elseif NEW.val > 50 then set NEW.val=50;
+       
+END IF; 
+    
+END /
+    
+Delimiter ;
+    
+
+
+insert into v1 values(-1);
+
+select * from v1;
+----------------------------------------------------------
+
+DELIMITER $$
+
+CREATE PROCEDURE `check_Mrating`(IN M_Rating int(10))
+
+BEGIN
+    
+IF M_Rating < 0 THEN
+        
+SIGNAL SQLSTATE '45000'
+         
+SET MESSAGE_TEXT = 'Sorry....rating can not be less than 0';
+   
+ END IF;
+    
+IF M_Rating > 100 THEN
+ SIGNAL SQLSTATE '45001'
+ 
+SET MESSAGE_TEXT = 'Sorry....rating cannot be more than 100';
+   
+ END IF;
+
+ 
+END $$
+
+Delimiter ;
+
+     
+Delimiter /
+
+create trigger ckk_rating before update on movie 
+
+For Each Row
+Begin
+	
+call check_Mrating(new.rating);
+
+End /
+
+Delimiter ;
+
+
+update movie set rating='0' where M_id='M01';
+
+select * from movie;
+      
+     
+ desc movie;
+      
+drop trigger ckk_rating;
+-------------------------------------------------------------------------------------

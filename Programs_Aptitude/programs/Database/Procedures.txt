@@ -1,0 +1,52 @@
+SELECT ROUTINE_NAME,ROUTINE_TYPE FROM INFORMATION_SCHEMA.ROUTINES where ROUTINE_TYPE = 'PROCEDURE' AND ROUTINE_SCHEMA = 'lmskh';
+
+Delimiter %
+CREATE PROCEDURE getbooks()
+
+BEGIN
+Select * from book;
+End %
+
+Delimiter ;
+
+------------------------------------------------------------------------------------------
+Delimiter //
+Create procedure getathorcountry(IN cntr)
+Begin
+Select * from author WHERE Nationality = cntr;
+End //
+Delimiter ;
+-------------------------------------------------------------------------------------------
+Delimiter &
+Create procedure getauthor(IN cntr varchar(20),OUT cnt int(10))
+BEGIN
+Select count(*) from author WHERE Nationality = cntr  INTO cnt;
+END &
+Delimiter ;
+
+----------------------------------------------------------------------------------------------
+Delimiter //
+create function getmembersts(yr int(15))
+Returns varchar(25)
+Begin
+DECLARE msg varchar(25);
+	IF yr = 2019 THEN SET msg =' Latest Member';
+		ELSEIF yr = 2018 THEN SET msg = 'Recent Member';
+		ELSEIF yr < 2018 THEN SET msg = 'Old Member';
+	END IF;
+Return(msg);
+End //
+Delimiter ;
+select year(doj) , getmembersts(year(doj)) from member;
+
+Delimiter /
+create procedure getmbrstatus(IN mbrid varchar(10),OUT msts varchar(20))
+Begin
+declare yr int(10);	
+select year(doj) INTO yr from member where memberid = mbrid;
+select getmembersts(yr) into msts;
+End /
+---------------------------------------------------------------------------------------------
+call
+
+

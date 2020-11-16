@@ -1,0 +1,151 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+class Node
+{
+     int rating;
+     double count;
+     string movieN;
+     Node *next;
+    public:
+       Node(string movieN,int rating)
+       {
+           this->movieN=movieN;
+           this->rating=rating;
+           count=0;
+           next=NULL;
+       }
+       double increc()
+       {
+           return count++;
+       }
+       void setNext(Node* next)
+       {
+           this->next=next;
+       }
+       Node* getNext()
+       {
+           return next;
+       }
+      
+       int getrating()
+       {
+           return rating;
+       }
+       string getMovieN()
+       {
+           return movieN;
+       }
+       int setrating(int rating)
+       {
+           this->rating=rating;
+       }
+};
+class linklist
+{
+     Node* head;
+      //int count;
+     public:
+       linklist()
+       {
+           head=NULL;
+           //count=0;
+       }
+       ~linklist()
+       {
+           
+       }
+       void add(string movieN,int rating)
+       {
+           Node* node=new Node(movieN,rating);
+           Node* temp=head;
+           if(head==NULL)
+           {
+             head=node; 
+             temp=node;
+             temp->increc();
+           }
+           else
+           {
+               while(temp->getNext()!=NULL)
+               {
+                   temp=temp->getNext();
+               }
+               temp->setNext(node);
+               temp->getNext()->increc();
+           }
+           
+       }
+       void print()
+       {
+           Node* temp=head;
+           while(temp->getNext()!=NULL)
+           {
+               cout<<temp->getMovieN()<<" "<<temp->getrating()<<endl;
+               temp=temp->getNext();
+           }
+           cout<<temp->getMovieN()<<" "<<temp->getrating()<<endl;
+       }
+       void check(string movieN,int rating)
+       {
+           
+           Node* temp=head;
+           
+           if(head==NULL)
+           {
+               add(movieN,rating);
+           }
+           else
+           {
+                    //cout<<"co";
+                   while(temp->getNext()!=NULL && temp->getMovieN()!=movieN )
+                   {
+                       temp=temp->getNext();
+                   }
+                   if(temp->getMovieN()==movieN)
+                   {    
+                       int n=(temp->getrating())+rating;
+                       
+                        int avg=(n/(temp->increc()));
+                        //cout<<temp->increc();
+                       temp->setrating(avg);
+                   }
+                   else if(temp->getNext()==NULL)
+                   {
+                       //cout<<"hh";
+                     add(movieN,rating);
+                   }
+                  
+           }
+       }
+     
+};
+int main()
+{
+    linklist l1;
+    string cmd;
+    int data;
+    string name;
+    while(1)
+    {
+        cin>>cmd;
+        if(cmd=="in")
+        {
+            //cout<<"a";
+            cin>>name>>data;
+            //cin>>"b";
+            l1.check(name,data);
+            
+        }
+        else if(cmd=="exit")
+        {
+            break;
+        }
+        else if(cmd=="pri")
+        {
+            l1.print();
+            //cout<<"a"<<endl;
+        }
+    }
+    return 0;
+}

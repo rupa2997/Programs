@@ -1,0 +1,201 @@
+
+
+Addition of two numbers
+
+
+Way-1
+======
+
+
+int main(){
+    int a=30;
+    int b=20;
+    cout<<"sum is "<<a+b;
+    return 0;
+}
+
+
+o/p=30
+op= 50
+
+each time -> compile & run 
+
+Way-2
+========
+
+int a,b;
+cout<<"Enter 2 nos"
+cin>>a>>b;
+cout<<"sum is "<<a+b;
+
+
+op=30
+op=50
+
+compile only one time
+run 
+
+Way-3
+=======
+
+Fun Type-1
+Return nothing and take nothing 
+
+Return nothing --> retun/void
+take nothing  --> args
+
+void sum(){
+    int a,b;
+    cout<<"Enter 2 nos"
+    cin>>a>>b;
+    cout<<"sum is "<<a+b;
+
+}
+
+int main(){
+    sum();
+
+}
+
+Way-4
+=======
+
+Fun Type-2
+Return something and take nothing 
+
+Return something
+take nothing  --> args
+
+int  sum(){
+    int a,b;
+    cout<<"Enter 2 nos"
+    cin>>a>>b;
+    reuturn a+b;
+
+}
+
+Way -5
+=======
+
+Fun Type-3
+Return nothing and take something 
+
+Return something
+take nothing  --> args
+
+void  sum(int a, int b){
+
+    cout<<a+b;
+
+}
+
+Way -6
+========
+
+Fun Type-4
+Return something and take something 
+
+Return something
+take something  --> args
+
+
+int sum(int a, int b){
+    retun a+b;
+}
+
+
+Way-7
+======
+
+
+class Demo{
+    int a,b;
+    public:
+        //sum 
+
+};
+
+Way-8
+=======
+
+class Demo{
+    int a,b;
+    public:
+        //sum 
+        //const
+
+};
+
+
+Pass by value - already disc
+
+PAss by address -> pointers
+Pass by ref -> reference variables
+
+
+Way 11
+====
+
+Void sum (int *p, int *q){
+
+    cout<<"Sum is "<< *p + *q;
+}
+
+
+int main(){
+    int a=10,b=20;
+    sum(&a, &b);
+}
+
+class Demo{
+    int a,b;
+    public:
+        int sum(int p,int q){
+                return p+q;
+        }
+
+};
+
+int main(){
+
+    Demo d;
+    int res = d.sum(10,20);
+    cout <<"Sum is "<<res;
+}
+
+
+07/04 -> Task-02
+
+Control Statements:
+    if...else
+    loops
+        do while
+    switch
+
+    continue, break ,goto
+
+
+
+Output
+=======
+1
+1*2
+1*2*3
+1*2*3*4
+
+Rule 1 : 10 different ways
+Rule 2 : 5 helps allowed 
+Rule 3 : only using control Statements
+
+
+
+Void sum (int &p, int &q){
+
+    cout<<"Sum is "<< p + q;
+}
+
+
+int main(){
+    int a=10,b=20;
+    sum(a, b);
+}

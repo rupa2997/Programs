@@ -1,0 +1,45 @@
+
+Switch Statement
+
+It is too difficult to use complex if and if else constructs , In such case switch statement provides the easy way to 
+select among multiple operations
+The general form switch statment is as follows 
+
+switch(expression)
+statement
+
+1.Switch statment must be of integral type 
+2.Switch body consist of label statment flow control statement 
+3. It is necessary that case has to be followed by integer constant.
+4. every case last statement has to be break statement.
+
+
+
+break: is a jump statement which can be used in switch / loop.
+break statements helps to move execution control forcefully outof switch / loop
+if break statement is not mentioned execution control is given to next cases even though they are not satisfied. Next cases will be executed till last statment or till next break statement.
+
+3. duplicate case is not allowed
+4. use of default case is optional
+5. sequence of cases do not matter
+
+return is jump statement can be used inside function. which helps to move execution control forcefully back to calling area
+
+enum - helps to define user type.
+
+enum <tagname> {[<enumaraed field as contant,...>]}; //use of tag is optional
+
+enum is collection of enumarated fields. Where each field represents integer contant.
+Use of enum helps to improve readability of source code
+
+If no field is assigned very first member/field of enum recevies default value zero and next sequential members will receive step 1  value ahead of previous one
+
+we can assign enum field with int constant.
+
+
+typedef is used to give another name to existing data type. Helps to improve readabilty of source code.
+
+typedef <existing data type> <another name>;
+
+
+

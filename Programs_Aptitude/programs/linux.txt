@@ -1,0 +1,231 @@
+
+mkdir: cannot create directory ‘khar/floor1/canteen,floor2/{rnd}’: No such file or directory
+mkdir: cannot create directory ‘khar/floor1/lab,floor2/{rnd}’: No such file or directory
+mkdir: cannot create directory ‘khar/floor1/class,floor2/{rnd}’: No such file or directory
+~$ mkdir -p khar/floor1/{canteen,lab,class},floor2/{rnd}
+~$ tree
+.
++-- 1
+¦   +-- 2
+¦   ¦   +-- 3
+¦   ¦       +-- 4
+¦   +-- ground
+¦       +-- 1
+¦       ¦   +-- floor
+¦       ¦       +-- 3
+¦       ¦       +-- 4
+¦       +-- 2
+¦           +-- floor
+¦               +-- 3
+¦               +-- 4
++-- cdac
+¦   +-- classroom
+¦       +-- students
++-- cpp1+-- khar
+¦   +-- floor1
+¦       +-- canteen,floor2
+¦       ¦   +-- {rnd}
+¦       +-- class,floor2
+¦       ¦   +-- {rnd}
+¦       +-- lab,floor2
+¦           +-- {rnd}
++-- linux_c.term
++-- os1
+¦   +-- os2
+¦       +-- os3
++-- os1_1
++-- os2
++-- os2_2
++-- os3
++-- os3_3
++-- os4
++-- os4_4
+
+35 directories, 1 file
+~$ ~$ touch rupali.txt
+~$ ls
+1     cpp1  linux_c.term  os1_1  os2_2  os3_3  os4_4
+cdac  khar  os1           os2    os3    os4    rupali.txt
+~$ cat>rupali.txt
+utyrfhfd
+fcdsvdzdvtrfg
+uyytrfghb
+ 
+~$ cat rupali.txt
+utyrfhfd
+fcdsvdzdvtrfg
+uyytrfghb
+
+~$ vi file.txt
+~$ cat file.txt
+tuj
+gfvnj
+hrdvb
+rfh
+hrdcb
+jutfb
+swfvb
+cdefv
+
+~$ ls
+1     file.txt      os1    os2_2  os4
+cdac  khar          os1_1  os3    os4_4
+cpp1  linux_c.term  os2    os3_3  rupali.txt
+~$ touch ru rupali.txt
+~$ ls
+1     file.txt      os1    os2_2  os4    rupali.txt
+cdac  khar          os1_1  os3    os4_4
+cpp1  linux_c.term  os2    os3_3  ru
+~$ vi ru
+~$ cat ru
+uytrfdcvbjgbnm
+ytrdfvbgvb
+
+~$ cat>ru
+ty
+ty
+~$ cat ru
+ty
+ty
+~$ cat>>ru
+wcw
+wc
+~$ 
+~$ cat ru
+ty
+ty
+wcw
+wc
+~$ echo rupa
+rupa
+~$ echo "welcome to cdac kharghar but lockdown extented till 3rd may">fileecho.txt
+~$ echo "welcome">ruecho.txt
+~$ cat ruecho.txt
+welcome
+~$ cat fileecho.txt
+welcome to cdac kharghar but lockdown extented till 3rd may
+~$ echo we> file.txt
+~$ cat file.txt
+we
+~$ printf "tghjkml">sona.txt
+~$ cat sona.txt
+tghjkml~$ nano k.txt
+~$ cat k.txt
+ygtffvgbhjq
+q
+
+~$ vim test.txt
+~$ cat test.txt
+rrupali
+~$ rm test.txt
+~$ ls
+1             k.txt         os1_1  os4         sona.txt
+cdac          k.txty        os2    os4_4
+cpp1          khar          os2_2  ru
+file.txt      linux_c.term  os3    ruecho.txt
+fileecho.txt  os1           os3_3  rupali.txt
+~$ rm file.txt ru.txt 
+rm: cannot remove 'ru.txt': No such file or directory
+~$ rm file.txt ru
+rm: cannot remove 'file.txt': No such file or directory
+~$ ls
+1             k.txt         os1    os3    ruecho.txt
+cdac          k.txty        os1_1  os3_3  rupali.txt
+cpp1          khar          os2    os4    sona.txt
+fileecho.txt  linux_c.term  os2_2  os4_4
+~$ unlink sona.txt
+~$ ls
+1     fileecho.txt  khar          os1_1  os3    os4_4
+cdac  k.txt         linux_c.term  os2    os3_3  ruecho.txt
+cpp1  k.txty        os1           os2_2  os4    rupali.txt
+~$ rm *.txt
+~$ ls
+1     cpp1    khar          os1    os2    os3    os4
+cdac  k.txty  linux_c.term  os1_1  os2_2  os3_3  os4_4
+~$ cat>ru
+ygghjkjklkl~$ cat ru
+ygghjkjklkl~$ rm -i ru
+rm: remove regular file 'ru'? y
+~$ ls
+1     cpp1    khar          os1    os2    os3    os4
+cdac  k.txty  linux_c.term  os1_1  os2_2  os3_3  os4_4
+~$ mkdir ri
+~$ ls
+1     cpp1    khar          os1    os2    os3    os4    ri
+cdac  k.txty  linux_c.term  os1_1  os2_2  os3_3  os4_4
+~$ rm -d ri
+~$ ls
+1     cpp1    khar          os1    os2    os3    os4
+cdac  k.txty  linux_c.term  os1_1  os2_2  os3_3  os4_4
+~$ rm -d cpp1
+~$ ls
+1     k.txty  linux_c.term  os1_1  os2_2  os3_3  os4_4
+cdac  khar    os1           os2    os3    os4
+~$ rmdir os2_2
+~$ ls
+1     k.txty  linux_c.term  os1_1  os3    os4
+cdac  khar    os1           os2    os3_3  os4_4
+~$ rm -r os1
+~$ ls
+1     k.txty  linux_c.term  os2  os3_3  os4_4
+cdac  khar    os1_1         os3  os4
+~$ rmdir os2
+~$ ls
+1     k.txty  linux_c.term  os3    os4
+cdac  khar    os1_1         os3_3  os4_4
+~$ history
+    1  touch rupali.txt
+    2  ls
+    3  cat>rupali.txt
+    4  cat rupali.txt
+    5  vi file.txt
+    6  cat file.txt
+    7  ls
+    8  touch ru rupali.txt
+    9  ls
+   10  vi ru
+   11  cat ru
+   12  cat>ru
+   13  cat ru
+   14  cat>>ru
+   15  cat ru
+   16  echo rupa
+   17  echo "welcome to cdac kharghar but lockdown extented till 3rd may">fileecho.txt
+   18  echo "welcome">ruecho.txt
+   19  cat ruecho.txt
+   20  cat fileecho.txt
+   21  echo we> file.txt
+   22  cat file.txt
+   23  printf "tghjkml">sona.txt
+   24  cat sona.txt
+   25  nano k.txt
+   26  cat k.txt
+   27  vim test.txt
+   28  cat test.txt
+   29  rm test.txt
+   30  ls
+   31  rm file.txt ru.txt 
+   32  rm file.txt ru
+   33  ls
+   34  unlink sona.txt
+   35  ls
+   36  rm *.txt
+   37  ls
+   38  cat>ru
+   39  cat ru
+   40  rm -i ru
+   41  ls
+   42  mkdir ri
+   43  ls
+   44  rm -d ri
+   45  ls
+   46  rm -d cpp1
+   47  ls
+   48  rmdir os2_2
+   49  ls
+   50  rm -r os1
+   51  ls
+   52  rmdir os2
+   53  ls
+   54  history
+~$ 

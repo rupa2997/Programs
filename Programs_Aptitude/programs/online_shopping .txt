@@ -1,0 +1,41 @@
+Introduction:
+Online Shopping is one of the essential part of our daily life . 
+
+Online shopping allows consumers to directly buy goods or services from a seller over the Internet using web browser. 
+
+You can buy electronic items, daily use products, cosmetics, decorative items, grocesaries, etc. by just few clicks.
+
+the main advantages of online shopping over traditional apporoach is:
+1.They  Can shop for 24*7.
+  
+ 
+
+2.
+You dont have to carry cash in hand .there are many options available to make payements online.
+
+
+
+
+3. Online shopping provides a greater diversity of products. This means you can choose goods that suit your requirements 
+and budget the most.
+
+4.
+Comparing and researching products and their prices is so much easier online.
+
+5. 
+You dont have to wait in a long queue to buy any product like we have to do in a traditional approach.
+
+
+ 
+About Us:
+Use the id attribute (id="value")// we define bookmarks in a page itself.
+Use the href attribute (href="#value") to link to the bookmark
+
+--In about us page we gives the description of our website.
+--and the type of brands that we are offering.
+Footer:
+ the contact information of the website are given .through which visitors can contact and mention the details of the employees.
+
+Contact Details:
+then moving to contact page in that we given the contact details of the website employess. and here is the menu through that we can redirect to the  following page 
+

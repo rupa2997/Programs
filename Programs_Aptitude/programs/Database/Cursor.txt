@@ -1,0 +1,111 @@
+﻿
+
+while
+repeat
+loop
+cursor
+---------------------------------------------------------------------------
+while
+
+1,2,3,4,5
+1,2
+Delimiter /
+create procedure chkwhl()
+BEGIN
+declare a int;
+declare strng varchar(20);
+set a = 1;
+set strng = '';
+while ( a <= 5) do
+	set strng = concat(strng, a, '|');
+	set a = a +1;
+end while;
+select strng;
+END /
+Delimiter ;	
+--------------------------------------------------------------------------------
+Repeat
+
+Delimiter /
+create procedure chkrpt()
+begin
+declare a int;
+declare strng varchar(20);
+set a = 1;
+set strng = '';
+REPEAT
+	set strng = concat(strng , a, ',' );
+	set a = a +1;
+	until a = 6
+END REPEAT;
+select strng;
+end /
+Delimiter ;
+
+----------------------------------------------------------------------------------------------
+Loop
+
+Delimiter /
+create procedure chklp(out stg varchar(20))
+begin
+declare a int;
+declare strng varchar(20);
+set a = 1;
+set strng = '';
+prnum: LOOP
+IF 
+	a = 6 THEN LEAVE prnum;
+END IF;
+	
+SET strng = concat(strng, a, ',');
+set a = a+1;
+
+IF 
+	a < 6 THEN ITERATE prnum;
+END IF;
+END LOOP;
+set stg = strng;
+END /
+Delimiter ;
+-------------------------------------------------------------------------------------------------------------
+cursor
+
+Delimiter /
+CREATE PROCEDURE getmembername(INOUT mbrlist varchar(300))
+begin
+DECLARE done int default 0;
+DECLARE mname varchar(40) default '';
+
+DECLARE mbrname_cursor CURSOR FOR select membername from member;
+DECLARE CONTINUE HANDLER
+FOR NOT FOUND SET done = 1;
+OPEN mbrname_cursor;
+get_mbrname: LOOP
+FETCH mbrname_cursor INTO mname;
+IF
+	done = 1 THEN LEAVE get_mbrname;
+END IF;
+	SET mbrlist = CONCAT(mbrlist ,'|', mname);
+END LOOP get_mbrname;
+CLOSE mbrname_cursor;
+END /
+Delimiter ;
+
+
+set @mlist = '';
+CALL getmembername(@mlist);
+select @mlist;
+
+Handler possible status -->
+
+FOUND- If the record is fetched successfully by the recent operation then, it returns ‘TRUE’ otherwise ‘FALSE’.
+NOTFOUND- It returns ‘FALSE’ if the record is retrieved but ‘TRUE’ if not.
+ISOPEN-If the cursor is already opened, it results in ‘TRUE’ else ‘FALSE’
+ROWCOUNT-When DML operations are executed, in a result set it provides the count of rows. 
+
+Primary Index = Index on Primary Key Column
+
+
+
+
+

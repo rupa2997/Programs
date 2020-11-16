@@ -1,0 +1,132 @@
+Preprocessing Directives
+
+1.Preprocessing directives begins with # symbols should be first character in source file
+2.They are generally placed at the start of the program.
+3.Macro is the facility provided by C preprocessor and are defined with the help of define directive.
+
++Types of macro
+
+1.Macro Without argument also called as object like macros
+2.Macro With argument function like macros
+
+1.Object like macros:-
+		#define macro-name-replacementlist
+		eg:-#define int char
+It causes each subsequent instance of macro name to be replaced by replacement list of preprocessing tokens 
+
+2.Function Like macros:-
+Macro with argument are called function like macros
+		#define macro-name(parameter-list)  replacementlist
+		
+
++Stringification/Token Replacement:-
+
+1.In function like macro defination if the replacement list consist of a parameter immediately preceded by # preprocessing token then  preprocessor replaces # preprocessing token and the parameter with single character string literal(Which contains spelling of the argument corresp to the parameter).It is called as token replacement   
+2.# is called as Stringizing operator and operation is known as stringification 
+
++Concatenation/Token pasting:-
+
+1.If ## preprocessing token appears between two tokens both the tokens are pasted to form one token.Since tokens are pasted to create 
+one token it is known as token pasting or token concatenation and the operator ## is known as concatenation operator.
+
+	
++Conditional compilation
+
+Conditional compilation means the part of the program is compiled if certain condtion are true 
+
+
+1.#if-#endif --> #if constant-exp
+			statement
+		 #endif
+
+2.#if-#else-#endif--> #if constant-exp
+			statement-set 1
+		      #else
+			statement - set 2 
+		      #endif	
+3.#if-#elif-#endif---> #if constant-exp1 
+			  statement-set1
+		       #elfif constant-exp2	
+			  statement-set2
+		       #endif
+
+4.#ifdef-#else-#endif-->  #ifdef identifier
+			     statement-set1
+			  #else
+			     statment-set2
+			  #endif
+5.#ifndef-#endif ---> #ifndef identifier
+			     statement-set
+		      #endif	
+
+6.#ifndef-#else-#endif---> #ifndef identifier
+				statment-set1
+		            #else
+				statement-set2
+			    #endif	
+
+
+
+
+
+
+Dynamic Memory allocation
+
+1.Allocation of the memory at runtime is called dynamic memory allocation.In C language memory can be dynamically allocated using malloc 
+calloc realloc
+
+1]Malloc:
+
+1.syntax :- void* malloc(size_t size);
+	
+2.It allocates the memory whose size is specified by parameter size , size_t is synonym for unsigned int 
+  
+3.Allocated space will not be initialized , the value of allocated space will be uniinitialized (garbage)
+
+4.The dynamically allocated memory allocated from heap.
+
+5.It returns the void pointer to the allocated space if successfull and returns null pointer if not successfull.
+	
+
+
+2]CALLOC:
+
+1.syntax:- void* calloc(size_t n , size_t size)
+
+2.It allocates the memory space for an array of n objects each of whose size is specified of the paramater size
+
+3.All the bits allocated memory space are init to zero.
+
+4,Function returns void pointer if success and if not returns the null pointer.
+
+
+
+3]REALLOC:
+
+1.syntax:- void* realloc(void *ptr,size_t size);
+
+2.Realloc function deallocates the old object pointed by ptr and return pointer to the new object that has size specified bt paramter size
+
+3.The major use is resize the dynamically created object
+
+4.The content of new object shall be same as that of old object any bytes in new object beyond the size of the old object have undeterimined   value
+
+5.If memory for the new object cannot be allocated the old object is not deallocated and value remains unchanged.
+ 
+				 			
+4]FREE:
+
+1.syntax:-  void free(void* ptr)
+
+2.free causes memory space pointed to the ptr to be deallocated.
+
+3.if ptr is null pointer no action occurs.
+
+
+MEMORY LEAK:-
+
+It happens when dynamically allocated memory is no longer needed but not freed . If we continuously allocate the memory without freeing it entire heap storage gets exhausted and it will unable to allocate the memory from heap so to avoid we have to free the memory whenever we are dynamically allocating memory.
+
+
+
+

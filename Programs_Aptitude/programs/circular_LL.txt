@@ -1,0 +1,310 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+class Node
+{
+     string name;
+     Node *next;
+    public:
+      Node(string name)
+      {
+          this->name=name;
+          next=NULL;
+      }
+      void setnext(Node* next)
+      {
+          this->next=next;
+      }
+      string getdata()
+      {
+          return name;
+      }
+      Node* getnext()
+      {
+          return next;
+      }
+};
+ class linklist
+ {
+    //public: 
+     Node* head;
+     Node* tail;
+    public:
+    linklist()
+    {
+        head=NULL;
+        tail=NULL;
+    }
+      void insertE(string name)
+      {
+          Node* node=new Node(name);
+          Node *temp=head;
+          if(head==NULL)
+          {
+             // head=NULL;
+              head=node;
+              tail=node;
+              tail->setnext(head);
+          }
+          else
+          {
+           /* while(temp->getnext()!=head)
+            {
+                temp=temp->getnext();
+            }*/
+            tail->setnext(node);
+            tail=node;
+            tail->setnext(head);
+          }
+      }
+      void delN(string name)
+      {
+          Node* temp=head;
+          Node* prev=NULL;
+          while(temp->getdata()!=name)
+          {
+              prev=temp;
+              temp=temp->getnext();
+          }
+          if(temp->getnext()==head)
+          {
+              if(prev==NULL)
+              {
+                  
+                  head=NULL;
+                  tail=NULL;
+              }
+              else
+              {
+               prev->setnext(head);
+               tail=prev;
+               tail->setnext(head);
+              }
+          }
+          else
+          {
+              if(temp->getnext()->getnext()==head)
+              {
+                  if(prev==NULL)
+                  {
+                      head=temp->getnext();
+                      tail->setnext(head);
+                      
+                  }
+                  else
+                  {
+                      if(prev==NULL)
+                      {
+                          head=temp->getnext();
+                          tail->setnext(head);
+                      }
+                      else
+                      {
+                        prev->setnext(temp->getnext());
+                        tail->setnext(head);
+                      }    
+                  }
+              }
+              else
+                {
+                    if(prev==NULL)
+                    {
+                        head=temp->getnext();
+                        tail->setnext(head);
+                    }
+                    
+                }
+                 
+          }
+      }
+      void RPR()
+      {
+          Node* temp=head;
+          Node* prev=NULL;
+          while(temp->getnext()!=head)
+          {
+              head=temp->getnext();
+              temp->setnext(prev);
+              prev=temp;
+              temp=head;
+          }
+          temp->setnext(prev);
+          prev=temp;
+          head=prev;
+          
+          
+      }
+      void insertB(string name)
+      {
+          
+          Node* node=new Node(name);
+          if(head==NULL)
+          {
+              head=node;
+              tail=node;
+              tail->setnext(head);
+          }
+          else
+          {
+           node->setnext(head);
+           head=node;
+           tail->setnext(head);
+          }
+      }
+      void insertA(string aft,string name)
+      {
+          Node* node=new Node(name);
+          Node* temp=head;
+          while(temp->getdata()!=aft)
+          {
+              temp=temp->getnext();
+          }
+          
+          if(temp->getnext()==head)
+          {
+              temp->setnext(node);
+              tail=node;
+              tail->setnext(head);
+          }
+          else
+          {
+              temp->setnext(node);
+              node->setnext(temp->getnext());
+              tail->setnext(head);
+          }
+          
+      }
+      void insertBef(string name,string bef)
+      {
+          Node* node=new Node(name);
+          Node* temp=head;
+          Node* prev=NULL;
+          while(temp->getdata()!=bef)
+          {
+              prev=temp;
+              temp=temp->getnext();
+          }
+          if(prev==NULL)
+          {
+              node->setnext(temp);
+               head=node;
+               tail->setnext(head);
+          }
+          else
+          {
+              node->setnext(temp);
+              prev->setnext(node);
+          }
+      }
+      void delB()
+      {
+          Node*temp=head;
+          head=temp->getnext();
+          tail->setnext(head);
+      }
+      void delE()
+      {
+          Node* temp=head;
+          Node* prev=NULL;
+          while(temp->getnext()!=head)
+          {
+              prev=temp;
+              temp=temp->getnext();
+          }
+          
+              tail=prev;
+              tail->setnext(head);
+          
+      }
+      void print()
+      {
+          Node* temp=head;
+          while(temp->getnext()!=head)
+          {
+              cout<<temp->getdata()<<" ";
+              temp=temp->getnext();
+          }
+          cout<<temp->getdata()<<" ";
+      }
+ };
+ int main()
+ {
+     linklist l1;
+     string cmd;
+     string nm;
+     while(1)
+     {
+         cin>>cmd;
+         //cout<<"aaaaa";
+     if(cmd=="inE")
+     {
+         //string nm;
+         cin>>nm;
+         //cout<<"run";
+         l1.insertE(nm);
+     }
+     else if(cmd=="inB")
+     {
+         cin>>nm;
+         l1.insertB(nm);
+     }
+     else if(cmd=="inA")
+     {
+         string aft;
+         cin>>aft>>nm;
+         l1.insertA(aft,nm);
+     }
+      else if(cmd=="inBF")
+     {
+         string bf;
+         cin>>nm>>bf;
+         l1.insertBef(nm,bf);
+     }
+     else if(cmd=="pri")
+     {
+         l1.print();
+     }
+     else if(cmd=="delB")
+     {
+         l1.delB();
+     }
+     else if(cmd=="delE")
+     {
+         l1.delE();
+     }
+     
+     else if(cmd=="delP")
+          {
+              //string nm;
+              cin>>nm;
+              l1.delN(nm);
+          }
+     else if(cmd=="rev")
+           {
+               l1.RPR();
+           }
+          else if(cmd=="break")
+          {
+              break;
+          }
+     }
+ }
+
+
+/*4
+4
+1 2 3 4
+4
+true
+3
+1 2 3
+3
+true
+2
+1 1
+3
+false
+5
+1 2 3 4 5
+2
+true*/

@@ -1,0 +1,180 @@
+create database movie_ticket_booking;
+show databases;
+use movie_ticket_booking;
+create table customer(C_id varchar(20) primary key,
+                                               C_Fname varchar(70),
+                                               C_gender varchar(70),
+                                               Email_id varchar(80),
+                                              Mobile_no varchar(70),
+                                              C_Lname varchar(100) );
+insert into customer values('c01','Rupali','F','rupapangare29@gmail.com','9856843297');
+ 
+insert into customer values('c02','harshda','F','harshdakerkar@gmail.com','8425615987');
+
+insert into customer values('c03','sharddha','F','sharddhashirbhate@gmail.com','8989654875');
+
+insert into customer values('c04','monika','F','monikapatil@gmail.com','9986452774');
+show tables;
+desc customer;
+ select * from customer;
+alter table Customer rename  column C_name to C_Fname;
+alter table Customer add C_Lname varchar(200);
+update customer SET C_Lname='Pangare' where C_Fname='Rupali';
+ update customer SET C_Lname='Kerakar' where C_Fname='harshda';
+ update customer SET C_Lname='Shirbhate' where C_Fname='sharddha';
+ update customer SET C_Lname='Patil' where C_Fname='Monika';
+insert into customer values('c05','jyoti','F','jyotipingle28@gmail.com','8846778987','Pingle');
+insert into customer values('c06','Aprana','F','Aparnapatel@gmail.com','8846778987','Patel'); 
+select * from customer;
+-------------------------------------------------------------------------------------------------------------------------------
+create table seat(seat_id  varchar(30)primary key,
+                                     seat_no varchar(30));
+insert into seat values('s01','A1');
+insert into seat values('s02','A2');
+insert into seat values('s03','A3');
+insert into seat values('s04','A4');
+insert into seat values('s05','B1');
+insert into seat values('s06','B2');
+desc seat;
+ select * from seat;
+
+create table theatre(Zip_code int(60) primary key,
+                                         theatre_name varchar(100),
+                                          location varchar(100));
+insert into theatre values('400709','balaji multiplex','koparkhairne');
+insert into theatre values('400703','INOX','vashi');
+insert into theatre values('400706','MAX MOVIES','nerul');
+insert into theatre values('410206','PVR','panvel');
+insert into theatre values('400079','Multiplex','vikroli');
+insert into theatre values('400031','Goldmax','vadala');
+select * from theatre;
+------------------------------------------------------------------------------------------------------------------
+create table Movie(M_id varchar(100) primary key,
+                                        M_name varchar(100),
+                                        Release_d DATE,
+                                        Director varchar(100),Rating Int(40));
+insert into Movie values('M01','MALANG','2020-4-28','mohit suri','60');
+insert into Movie values('M02','thappad','2020-4-17','Anubhav Sinha','70');
+insert into Movie values('M03','uri','2020-1-4','Aditya dhar','97');
+insert into Movie values('M04','Tanaji','2020-1-10','OM Raut','100');
+insert into Movie values('M05','Angrezi_Medium','2020-5-5','Homi_Adajania','90');
+ insert into Movie values('M06','Baghi_3','2020-2-14','Ahmed_khan','93');
+select * from Movie;
+-----------------------------------------------------------------------------------------------------------------------
+
+create table shows(shows_id  varchar(30) primary key,
+                                      m_id varchar(100),
+                                       langauge enum('hindi','marathi','english'),
+                                       shows_d date,shows_t time,
+                                       Screen_no varchar(100),
+                                    FOREIGN KEY(m_id) REFERENCES Movie(M_id));
+insert into shows values('s01','M01','hindi','2020-03-22','9:00:00','S1');
+insert into shows values('s02','M02','hindi','2020-03-06','10:00:00','S2');
+insert into shows values('s03','M05','hindi','2020-04-28','11:00:00','S4');
+insert into shows values('s04','M06','hindi','2020-04-28','18:00:00','S3');
+ insert into shows values('s05','M04','hindi','2020-04-04','20:00:00','S4');
+insert into shows values('s06','M03','hindi','2020-05-020','10:15:00','S2');
+ select * from shows;
+update shows SET m_id='M05' where Shows_id='s03';
+update shows SET m_id='M06' where Shows_id='s04';
+update shows set shows_d='2020-03-22' where shows_id='s01';
+update shows set shows_d='2020-03-06' where shows_id='s02';
+-------------------------------------------------------------------------------------------------------------
+ create table ticket(T_id varchar(100) primary key,
+                                       T_no int(50),shows_id varchar(100),
+                                       Zip_code int(100),seat_id varchar(100)
+                                   FOREIGN KEY(shows_id) REFERENCES shows(shows_id),
+                                  FOREIGN KEY(Zip_code) REFERENCES Theatre(Zip_code),
+                                  FOREIGN KEY(seat_id) REFERENCES seat(seat_id));
+insert into ticket values('T01','001','S01','400709','s01');
+insert into ticket values('T02','001','S04','410206','s02');
+insert into ticket values('T03','005','S05','400706','s03');
+insert into ticket values('T05','008','S05','400031','s05');
+insert into ticket values('T06','008','S06','400079','s06');
+select * from ticket;
+update ticket SET Zip_code='410206' where T_id='T02';
+update ticket set Shows_id='S04' where zip_code='410206';
+update ticket set Shows_id='S05' where zip_code='400706';
+-----------------------------------------------------------------------------------------------------------------
+ create table booking(Book_id varchar(100) primary key,
+                                          T_id varchar(100),
+                                       FOREIGN KEY(T_id) REFERENCES ticket(T_id));
+
+insert into booking values('B01','T01');
+insert into booking values('B02','T01');
+insert into booking values('B03','T03');
+insert into booking values('B04','T03');
+insert into booking values('B05','T02');
+ insert into booking values('B06','T04');
+ insert into booking values('B07','T05');
+ insert into booking values('B08','T06');
+select * from booking;
+
+show tables;
++--------------------------------+
+| Tables_in_movie_ticket_booking |
++--------------------------------+
+| booking                        |
+| customer                       |
+| movie                          |
+| seat                           |
+| shows                          |
+| theatre                        |
+| ticket                         |
++--------------------------------+
+
+ 
+------------------------------------------------------------------------------------------------------------------------
+PRACTICE  QUERY :::::--------
+ select shows_id,shows_d,shows_t,M_name from
+ Movie,shows where Shows.M_id=Movie.M_id;
+
+select M_name,Shows_t,shows_d from
+ Movie,Shows where shows.M_id=Movie.M_id;
+
+select M_name,Shows_t,shows_d from Movie,Shows where
+ shows.M_id=Movie.M_id and M_name='thappad';
+
+select * from Movie order by M_name;
+select M_name, Director from Movie order by M_name;
+select * from movie where rating>=70;
+select * from customer where C_Fname LIKE '%a';
+select * from customer where C_Fname LIKE '_______';
+select M_name,count(Shows_d) from Movie,shows
+ where Shows.M_id=Movie.M_id group by M_name;
+select shows_id ,count(shows_id)from Ticket group by shows_id;
+select M_name from movie where M_id=(select M_id from shows where day(Shows_d)='04');
+select M_name, Rating from Movie where M_id =(select M_id from Shows where day(Shows_d)='28');
+select M_name, Rating from Movie where M_id IN(select M_id from Shows where day(Shows_d)='28');
+select m_name,day(Shows_d) from movie,shows where Movie.M_id=Shows.M_id;
+
+ select Theatre_name,day(Shows_d) from Ticket join Shows join Theatre
+ where Ticket.Zip_code=Theatre.Zip_code And Ticket.Shows_id=Shows.Shows_id;
+
+select Theatre_name,day(Shows_d),M_name from Movie join Ticket join Shows join Theatre 
+where Ticket.Zip_code=Theatre.Zip_code And 
+Ticket.Shows_id=Shows.Shows_id And Shows.M_id=Movie.M_id;
+
+select Theatre_name,day(Shows_d),Hour(Shows_t),M_name from Movie join Ticket join 
+Shows join Theatre on Ticket.Zip_code=Theatre.Zip_code And 
+Ticket.Shows_id=Shows.Shows_id And Shows.M_id=Movie.M_id;
+
+select theatre_name,Shows_id from theatre left join  
+ticket left join shows on theatre.Zip_code=ticket.Zip_code and 
+Shows.Shows_id=ticket.Shows_id; 
+select Zip_code from theatre where Zip_code NOT IN (select Zip_code from ticket);
+
+select m_name,shows.M_id from movie,shows where 
+Movie.M_id=Shows.M_id order by m_name ;
+
+select m_name,shows.M_id from movie,shows 
+where Movie.M_id=Shows.M_id group by m_name desc;
+
+select Zip_code from theatre union select Zip_code from ticket;
+select Zip_code from theatre union all select Zip_code from ticket;//print duplicate also
+
+select M_name,theatre_name,day(shows_d) from movie left join theatre 
+left join shows on movie.m_id=shows_id and shows.shows_id=ticket.shows.shows_id ;
+
+
+

@@ -1,0 +1,101 @@
+ create database ola_booking;
+show databases;
+create table customer(C_id varchar(10) primary key,
+                                              C_name varchar(100),
+                                              C_gender enum('M','F'),
+                                             C_add1 varchar(60),
+                                             C_State varchar(50),
+                                            C_City varchar(100),
+                                            C_Contact_no int(40),  
+                                            C_Pan_No varchar(100));
+insert into customer values('C01','Rupali','F','Kopraikhairne',
+'Maharashtra','Panvel','8108753','DEC9910');
+insert into customer values('C02','Pallavi','F','bonkode gaon',
+'Maharashtra','koparkhairne','9908753','NCP6589');
+insert into customer values('C03','Vidya','F','Palspe Fata',
+'Maharashtra','Navi Mumbai','98567432','UP6589');
+ insert into customer values('C04','Shubham','M','MACB',
+'Maharashtra','Mumbai','80809567','EDW7890');
+select * from customer;
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+create table Jorney_root(J_id varchar(30),
+                                                 J_pickup_L varchar(100),
+                                                J_drop_L varchar(100),
+                                               J_d_t DATETIME, 
+                                              J_pickup_code int(100),
+                                             J_drop_code int(50));
+alter table Jorney_root add primary key(J_id);
+insert into Jorney_root values('J01','koparkhairne',
+ 'panvel','2020-07-09 09:06:30', '400709','4007006');
+insert into Jorney_root values('J02','ghansoli','vashi',
+'2020-04-09 12:00:50','400703','4007016');
+insert into Jorney_root values('J03','airoli','belapur',
+'2020-04-09 3:00:50','400703','400701');
+ insert into Jorney_root values('J04','dombivli','seawoods',
+'2020-05-14 18:00:50','400706','400710');
+select * from Jorney_root;
+--------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+
+ create table Drivver(D_id int(50) primary key,
+                                           D_name varchar(100),
+                                           D_contact_no int(70),
+                                           D_Email_id varchar(60),
+                                           D_licen_no varchar(60));
+alter table Drivver rename to Driver;
+insert into Driver values('01','RAM','7729567872','ramhary@gmail.com','MH349754');
+insert into Driver values('02','vikas','7664366764','vikaspangare@gmail.com','MH05D06576');
+insert into Driver values('03','satish','9957349854','satishpangare45@gmail.com','MH89N4558');
+insert into Driver values('04','priyank','7957349854','patilpriank45@gmail.com','MH65675');
+alter table driver modify column D_id varchar(100);
+----------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+create table Car_details(Car_id varchar(100) primary key,
+                                                  Car_name varchar(100),
+                                                  Car_Reg_No intcreate(100),
+                                                  Car_Model varchar(100),
+                                                  Company varchar(100));
+desc Car_details;
+ alter table Car_details Drop Company;
+insert into Car_details values('CA001','swift ','67999','maruti suzuki');
+ insert into Car_details values('CA002','formatic','67999','mercedize benz');
+select * from Car_details;
+
+create table Payment_d(P_id varchar(60) primary key,
+                                                  P_mode varchar(100),J_id varchar(100),
+                                                  P_bill bigint(100),
+                                                P_d_t DATETIME);
+  alter table Payment_d add constraint  J_id FOREIGN KEY
+                                               (J_id)REFERENCES Jorney_root(J_id);
+desc Payment_d;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| P_id   | varchar(60)  | NO   | PRI | NULL    |       |
+| P_mode | varchar(100) | YES  |     | NULL    |       |
+| J_id   | varchar(100) | YES  | MUL | NULL    |       |
+| P_bill | bigint(100)  | YES  |     | NULL    |       |
+| P_d_t  | datetime     | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+insert into Payment_d val
+dues('p001','Credit_Card','J01','500000','2020-02-08 16:09:00');
+insert into Payment_d values('p002','Debit_Card','J02','1000000','2020-03-29 18:09:00');
+select * from Payment_d;
+-----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
+
+create table Booking(Book_id varchar(50) primary key, 
+                                           C_id varchar(50),Car_id varchar(100),
+                                           P_id varchar(100), J_id varchar(100),
+                                           foreign key(C_id) references customer(C_id),
+                                           foreign key (Car_id) references Car_details(Car_id),
+                                           foreign key (P_id) references Payment_d(P_id),
+                                           foreign key (J_id) references Jorney_root(J_id));
+insert into Booking values('B001','C01','CA001','p001','J01');
+insert into Booking values('B002','C02','CA002','p002','J02');
+select * from Booking;
+alter table booking add D_id varchar(10);
+alter table booking add constraint FK_Did foreign key(D_id) 
+references Driver(D_id);
+
